@@ -1,0 +1,78 @@
+{
+  "type": "diff",
+  "version": "10",
+  "dialect": "postgres",
+  "id": "e4c0a9b9-4e57-4410-9e9d-2b27b7765612",
+  "prevIds": [
+    "8fb9d06a-4347-492e-8cbf-7df08e5450bb"
+  ],
+  "footprints": [
+    {
+      "statementType": "create_enum",
+      "statementTarget": [
+        "enum",
+        "public",
+        "task_severity"
+      ],
+      "writes": [
+        "s|enum|public.task_severity",
+        "n|enum|public.task_severity",
+        "e|enum|public.task_severity",
+        "n|type|public.task_severity"
+      ],
+      "reads": [
+        "n|sch|public"
+      ]
+    },
+    {
+      "statementType": "add_column",
+      "statementTarget": [
+        "column",
+        "public",
+        "tasks",
+        "severity"
+      ],
+      "writes": [
+        "s|col|public.tasks.severity",
+        "n|col|public.tasks.severity",
+        "e|col|public.tasks.severity"
+      ],
+      "reads": [
+        "n|tbl|public.tasks",
+        "n|sch|public",
+        "n|enum|public.task_severity"
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "name": "task_severity",
+        "values": [
+          "low",
+          "medium",
+          "high"
+        ],
+        "entityType": "enums"
+      }
+    },
+    {
+      "op": "create",
+      "row": {
+        "schema": "public",
+        "table": "tasks",
+        "name": "severity",
+        "type": "task_severity",
+        "typeSchema": "public",
+        "notNull": true,
+        "dimensions": 0,
+        "default": "'medium'",
+        "generated": null,
+        "identity": null,
+        "entityType": "columns"
+      }
+    }
+  ]
+}

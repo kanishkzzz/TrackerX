@@ -20,6 +20,12 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Neon database
+
+Server code can access Postgres through `getDb()` in `lib/db.ts`. It uses the pooled `DATABASE_URL` with Drizzle's Neon HTTP driver, which fits this Next.js serverless app. The database credentials stay on the server; do not prefix them with `NEXT_PUBLIC_`.
+
+`GET /api/health` runs a lightweight database query and returns `200` when Postgres is reachable or `503` when it is unavailable. `DATABASE_URL_UNPOOLED` is reserved for future schema migrations and other session-bound admin work. Neon manages `NEON_BRANCH` and `NEON_BRANCH_ID`; `NEON_FUNCTION_HOST_SUFFIX` is available if this app later adds a deployed Neon Function.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

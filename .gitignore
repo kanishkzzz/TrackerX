@@ -12,17 +12,24 @@
 
 # testing
 /coverage
+/test-results/
+/playwright-report/
 
 # next.js
 /.next/
 /out/
+/.turbo/
 
 # production
 /build
+/dist/
 
 # misc
 .DS_Store
 *.pem
+*.log
+*.log.*
+/.idea/
 
 # debug
 npm-debug.log*
@@ -32,10 +39,20 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
+!.env.*.example
+.dev.vars*
+!.dev.vars.example
 
 # vercel
 .vercel
 
+# Cloudflare / OpenNext generated files
+/.wrangler/
+/.open-next/
+/worker-configuration.d.ts
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.neon
