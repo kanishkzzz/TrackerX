@@ -5,7 +5,9 @@ import { defineConfig } from "drizzle-kit";
 config({ path: fileURLToPath(new URL("./.env.local", import.meta.url)) });
 
 const migrationDatabaseUrl =
-  process.env.LOCAL_DATABASE_URL ?? process.env.DATABASE_URL_UNPOOLED;
+  process.env.DATABASE_PROVIDER === "local"
+    ? process.env.LOCAL_DATABASE_URL
+    : process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL;
 if (!migrationDatabaseUrl) {
   throw new Error(
     "Set LOCAL_DATABASE_URL for local migrations or DATABASE_URL_UNPOOLED for Neon migrations.",
